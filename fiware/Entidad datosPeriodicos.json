@@ -1,0 +1,31 @@
+{
+	"id":"ElsterA15023225643",
+	"type":"datosPeriodicos",
+	"fases":{
+		"type":"Number",
+		"value":1
+	},
+	"contadorEnergiaActiva":{
+		"type":"Number",
+		"value":0
+	},
+	"contadorEnergiaReactiva":{
+		"type":"Number",
+		"value":0
+	},
+	"dateObserved":{
+		"type":"text",
+		"value":"2020-06-12T14:47:07.787Z"
+	},
+	"location":{
+		"type":"geo:json",
+		"value":{
+			"type":"Point",
+			"coordinates":[-8.76846,42.602144722]
+		}
+	},
+	"refDevice":{
+		"type":"Number",
+		"value":0
+	}
+}

@@ -1,0 +1,27 @@
+HTTP REQUEST NGSI v2
+
+CONSULTAR TODAS LAS ENTIDADES
+
+	GET 206.189.224.247:1026/v2/entities/elstera1402323123
+
+TODAS LAS ENTIDADES DE UN TIPO DE ENTIDAD ESPECIFICO (datosInstantaneosMonofasico)
+
+	GET 206.189.224.247:1026/v2/entities/elstera1402323123?type=datosInstantaneosMonofasico
+
+CONSULTAR UNA ENTIDAD POR SU ID
+
+	GET 206.189.224.247:1026/v2/entities/elstera1402323123
+
+CONSULTAR UNA ENTIDAD POR SU ID Y TIPO (pueden existir ID identicos de entidades de diferente tipo. Ej: Un mismo medidor tiene asociadas las entidades datosInstantaneosMonofasico y datosPeriodicos)
+
+	GET 206.189.224.247:1026/v2/entities/elstera1402323123?type=datosInstantaneosMonofasico
+
+CONSULTAR UN ATRIBUTO DE UNA ENTIDAD (contadorEnergiaActiva)
+
+	GET 206.189.224.247:1026/v2/entities/elstera1402323123/attrs/contadorEnergiaActiva?type=datosInstantaneosMonofasico
+
+CREAR UNA NUEVA ENTIDAD
+
+	POST 206.189.224.247:1026/v2/entities
+
+	body: la entidad completa con id y type en formato JSON
