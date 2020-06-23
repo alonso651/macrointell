@@ -1,0 +1,141 @@
+# See https://www.chirpstack.io/gateway-bridge/install/config/ for a full
+# configuration example and documentation.
+
+[integration.mqtt.auth.generic]
+servers=["tcp://mosquitto:1883"]
+username=""
+password=""
+# Gateway backend configuration.
+[backend]
+
+# Backend type.
+#
+# Valid options are:
+#   * semtech_udp
+#   * concentratord
+#   * basic_station
+type="semtech_udp"
+
+
+  # Semtech UDP packet-forwarder backend.
+  [backend.semtech_udp]
+
+  # ip:port to bind the UDP listener to
+  #
+  # Example: 0.0.0.0:1700 to listen on port 1700 for all network interfaces.
+  # This is the listener to which the packet-forwarder forwards its data
+  # so make sure the 'serv_port_up' and 'serv_port_down' from your
+  # packet-forwarder matches this port.
+  udp_bind = "0.0.0.0:1700"
+
+  # Skip the CRC status-check of received packets
+  #
+  # This is only has effect when the packet-forwarder is configured to forward
+  # LoRa frames with CRC errors.
+  skip_crc_check = false
+
+  # Fake RX timestamp.
+  #
+  # Fake the RX time when the gateway does not have GPS, in which case
+  # the time would otherwise be unset.
+  fake_rx_time=false
+
+
+
+  # ChirpStack Concentratord backend.
+  [backend.concentratord]
+
+  # Check for CRC OK.
+  crc_check=true
+
+  # Event API URL.
+  event_url="ipc:///tmp/concentratord_event"
+
+  # Command API URL.
+  command_url="ipc:///tmp/concentratord_command"
+
+
+  # Basic Station backend.
+  [backend.basic_station]
+
+  # ip:port to bind the Websocket listener to.
+  bind=":3001"
+
+  # TLS certificate and key files.
+  #
+  # When set, the websocket listener will use TLS to secure the connections
+  # between the gateways and ChirpStack Gateway Bridge (optional).
+  tls_cert=""
+  tls_key=""
+
+  # TLS CA certificate.
+  #
+  # When configured, ChirpStack Gateway Bridge will validate that the client
+  # certificate of the gateway has been signed by this CA certificate.
+  ca_cert=""
+
+  # Ping interval.
+  ping_interval="1m0s"
+
+  # Read timeout.
+  #
+  # This interval must be greater than the configured ping interval.
+  read_timeout="1m5s"
+
+  # Write timeout.
+  write_timeout="1s"
+
+  # Region.
+  #
+  # Please refer to the LoRaWAN Regional Parameters specification
+  # for the complete list of common region names.
+  #region="EU868"
+  region="AU915"
+
+  # Minimal frequency (Hz).
+  #frequency_min=863000000
+  frequency_min=915000000
+
+  # Maximum frequency (Hz).
+  frequency_max=928000000
+
+  # Concentrator configuration.
+  #
+  # This section contains the configuration for the SX1301 concentrator chips.
+  # Example:
+  # [[backend.basic_station.concentrators]]
+  #
+  #   # Multi-SF channel configuration.
+  #   [backend.basic_station.concentrators.multi_sf]
+  #
+  #   # Frequencies (Hz).
+     frequencies=[
+       915200000,
+       915400000,
+       915600000,
+       915800000,
+       916000000,
+       916200000,
+       916400000,
+       916600000,
+  #   ]
+  #
+  #   # LoRa STD channel.
+  #   [backend.basic_station.concentrators.lora_std]
+  #
+  #   # Frequency (Hz).
+  #
+  #   frequency=917900000
+  #
+  #   # Bandwidth (Hz).
+  #   bandwidth=250000
+  #
+  #   # Spreading factor.
+  #   spreading_factor=7
+  #
+  #   # FSK channel.
+  #   [backend.basic_station.concentrators.fsk]
+  #
+  #   # Frequency (Hz).
+  #   frequency=868800000
+

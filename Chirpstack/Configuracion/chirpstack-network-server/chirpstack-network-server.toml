@@ -1,0 +1,78 @@
+# See https://www.chirpstack.io/network-server/install/config/ for a full
+# configuration example and documentation.
+#
+# This file is for the US915 band (channels 8-15). See the examples/ folder for more
+# configuration examples.
+#
+# Note: these channels are also used by TTN.
+
+[general]
+# Log level
+#
+# debug=5, info=4, warning=3, error=2, fatal=1, panic=0
+log_level=4
+
+[postgresql]
+dsn="postgres://chirpstack_ns:chirpstack_ns@postgresql/chirpstack_ns?sslmode=disable"
+
+[redis]
+url="redis://redis:6379"
+
+[network_server]
+net_id="000000"
+get_downlink_data_delay="100ms"
+
+
+[network_server.band]
+name="AU915"
+uplink_dwell_time_400ms=true
+downlink_dwell_time_400ms=true
+uplink_max_eirp=1
+  [network_server.network_settings]
+   # RX window (Class-A).
+  #
+  # Set this to:
+  # 0: RX1 / RX2
+  # 1: RX1 only
+  # 2: RX2 only
+  rx_window=0
+  # Class A RX1 delay
+  #
+  # 0=1sec, 1=1sec, ... 15=15sec. A higher value means ChirpStack Network Server has more
+  # time to respond to the device as the delay between the uplink and the
+  # first receive-window will be increased.
+  rx1_delay=1
+
+  # RX1 data-rate offset
+  #
+  # Please consult the LoRaWAN Regional Parameters specification for valid
+  # options of the configured network_server.band.name.
+  rx1_dr_offset=0
+
+  # RX2 data-rate
+  #
+  # When set to -1, the default RX2 data-rate will be used for the configured
+  # LoRaWAN band.
+  #
+  # Please consult the LoRaWAN Regional Parameters specification for valid
+  # options of the configured network_server.band.name.
+  rx2_dr=8
+
+  # RX2 frequency
+  #
+  # When set to -1, the default RX2 frequency will be used.
+  #
+  # Please consult the LoRaWAN Regional Parameters specification for valid
+  # options of the configured network_server.band.name.
+  rx2_frequency=923300000
+
+   enabled_uplink_channels=[0,1,2,3,4,5,6,7,64]
+
+[network_server.gateway.backend.mqtt]
+server="tcp://mosquitto:1883"
+
+[join_server.default]
+server="http://chirpstack-application-server:8003"
+
+[geolocation_server]
+server="chirpstack-geolocation-server:8005"
