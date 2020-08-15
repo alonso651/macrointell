@@ -1,0 +1,22 @@
+//PAYLOAD
+msg.payload = {
+    "marca":"Elster",
+    "modelo":modelo,
+    "ID":id,
+    "tensionA":tensionA,
+    "intensidadA":intensidadA,
+    "potApA":potApA,
+    "facPotA":facPotA,
+    "tensionB":tensionB,
+    "intensidadB":intensidadB,
+    "potApB":potApB,
+    "facPotB":facPotB,
+    "tensionC":tensionC,
+    "intensidadC":intensidadC,
+    "potApC":potApC,
+    "facPotC":facPotC,
+    "fases":3,
+    "lectura":"Instantanea",
+    "appID":appID,
+    "devEUI":devEUI
+}
